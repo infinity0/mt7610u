@@ -28,6 +28,8 @@
 #ifndef	__RT_CONFIG_H__
 #define	__RT_CONFIG_H__
 
+#define __SRCDATE__ "20130916"
+
 /* #define WDS_VLAN_SUPPORT */
 
 #include "rtmp_comm.h"
