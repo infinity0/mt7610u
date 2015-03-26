@@ -451,17 +451,15 @@ endif
 endif
 
 install:
-	rm -rf $(DAT_PATH)
-	$(shell [ ! -f /etc/Wireless ] && mkdir /etc/Wireless)
-	mkdir $(DAT_PATH)
-	cp $(RT28xx_DIR)/$(DAT_FILE_NAME) $(DAT_PATH)/.
-	install -d $(LINUX_SRC_MODULE)
-	install -m 644 -c $(addsuffix .ko,$(MOD_NAME)) $(LINUX_SRC_MODULE)
+	mkdir -p $(DESTDIR)$(DAT_PATH)
+	cp $(RT28xx_DIR)/$(DAT_FILE_NAME) $(DESTDIR)$(DAT_PATH)/.
+	install -d $(DESTDIR)$(LINUX_SRC_MODULE)
+	install -m 644 -c $(addsuffix .ko,$(RT28xx_DIR)/os/linux/$(MOD_NAME)) $(DESTDIR)$(LINUX_SRC_MODULE)
 	/sbin/depmod -a ${shell uname -r}
 
 uninstall:
-#	rm -rf $(DAT_PATH)
-	rm -rf $(addprefix $(LINUX_SRC_MODULE),$(addsuffix .ko,$(MOD_NAME)))
+	rm -rf $(DESTDIR)$(DAT_PATH)
+	rm -rf $(addprefix $(DESTDIR)$(LINUX_SRC_MODULE),$(addsuffix .ko,$(MOD_NAME)))
 	/sbin/depmod -a ${shell uname -r}
 
 # Declare the contents of the .PHONY variable as phony.  We keep that

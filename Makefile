@@ -486,7 +486,7 @@ ifeq ($(TARGET), LINUX)
 ifneq (,$(findstring 2.4,$(LINUX_SRC)))
 	$(MAKE) -C $(RT28xx_DIR)/os/linux -f Makefile.4 install
 else
-	$(MAKE) -C $(RT28xx_DIR)/os/linux -f Makefile.6 install
+	$(MAKE) -f os/linux/Makefile.6 install
 endif
 endif
 
